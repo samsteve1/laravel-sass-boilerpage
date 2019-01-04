@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Auth;
 class ActivationController extends Controller
 {
   protected $redirectTo = '/dashboard';
+  
+    public function __construct()
+    {
+      $this->middleware(['confirmation_token_expired:/']);
+    }
+
     public function activate(ConfirmationToken $token, Request $request)
     {
       //Activate user's acccount
