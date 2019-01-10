@@ -9,18 +9,32 @@ Route::group(['middleware' => ['auth']], function () {
 /**
 * Account
 */
-Route::group(['prefix' => 'account', 'middleware' => ['auth'], 'as' => 'account.'], function () {
-  Route::get('/', 'Account\AccountController@index')->name('index');
+Route::group(['prefix' => 'account', 'middleware' => ['auth'], 'as' => 'account.', 'namespace' => 'Account'], function () {
+  Route::get('/', 'AccountController@index')->name('index');
   /**
 * Profile
   */
-  Route::get('/profile', 'Account\ProfileController@index')->name('profile.index');
-  Route::post('/profile', 'Account\ProfileController@store')->name('profile.update');
+  Route::get('/profile', 'ProfileController@index')->name('profile.index');
+  Route::post('/profile', 'ProfileController@store')->name('profile.update');
   /**
 *Password
   */
-  Route::get('/password', 'Account\PasswordController@index')->name('password.index');
-  Route::post('/password', 'Account\PasswordController@store')->name('password.store');
+  Route::get('/password', 'PasswordController@index')->name('password.index');
+  Route::post('/password', 'PasswordController@store')->name('password.store');
+  /**
+  *Subscription
+  */
+  Route::group(['prefix' => 'subscription', 'namespace' => 'Subscription'], function () {
+    Route::get('/cancel', 'SubscriptionCancelController@index')->name('subscription.cancel.index');
+    Route::get('/resume', 'SubscriptionResumeController@index')->name('subscription.resume.index');
+    Route::get('/swap', 'SubscriptionSwapController@index')->name('subscription.swap.index');
+  });
+  /**
+  *card
+  */
+  Route::group(['prefix' => 'card', 'namespace' => 'Card'], function () {
+    Route::get('/', 'UpdateCardController@index')->name('updatecard.index');
+  });
 });
 /**
 * Account activation
@@ -31,9 +45,16 @@ Route::group(['prefix' => 'activation',  'as' => 'activation.', 'middleware' => 
   Route::get('/{confirmation_token}', 'Auth\ActivationController@activate')->name('activate');
 });
 /**
-*Subscription
+*Plans
 */
 Route::group(['prefix' => 'plans', 'as' => 'plans.'], function () {
   Route::get('/', 'Subscription\PlanController@index')->name('index');
   Route::get('/teams', 'Subscription\PlanTeamController@index')->name('teams.index');
+});
+/**
+*SubScription
+*/
+Route::group(['prefix' => 'subscription', 'as' => 'subscription.', 'middleware' => ['auth.register'] ], function () {
+  Route::get('/', 'Subscription\SubscriptionController@index')->name('index');
+  Route::post('/', 'Subscription\SubscriptionController@store')->name('store');
 });

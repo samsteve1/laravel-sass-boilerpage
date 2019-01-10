@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', '') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -26,6 +26,7 @@
             <div class="container">
               @include('layouts.partials.alerts._alert')
               @yield('content')
+              @yield('scripts')
             </div>
         </main>
     </div>
