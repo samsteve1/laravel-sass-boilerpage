@@ -19,4 +19,8 @@ trait HasSubscriptions
   {
     return !$this->hasCancelled();
   }
+  public function isCustomer()
+  {
+    return $this->hasStripeId();
+  }
 }

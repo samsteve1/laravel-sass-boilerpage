@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Traits\HasConfirmationTokens;
 use App\Models\Traits\HasSubscriptions;
+use App\Models\Teams;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -40,5 +41,9 @@ class User extends Authenticatable
     public function hasNotActivated()
     {
       return !$this->hasActivated();
+    }
+    public function team()
+    {
+      return $this->hasOne(Team::class);
     }
 }

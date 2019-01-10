@@ -4,7 +4,7 @@ namespace App\Http\Middleware\Subscription;
 
 use Closure;
 
-class RedirectIfNotCustomer
+class RedirectIfNotInactive
 {
     /**
      * Handle an incoming request.
@@ -15,7 +15,7 @@ class RedirectIfNotCustomer
      */
     public function handle($request, Closure $next)
     {
-      if(!auth()->user()->isCustomer()) {
+      if(auth()->user()->hasSubscription()) {
         return redirect()->route('account.index');
       }
         return $next($request);

@@ -15,6 +15,9 @@ class RedirectIfNotCancelled
      */
     public function handle($request, Closure $next)
     {
+      if(auth()->user()->hasNotCancelled()) {
+        return redirect()->route('account.index');
+      }
         return $next($request);
     }
 }
