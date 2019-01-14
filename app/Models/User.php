@@ -11,12 +11,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Cashier\Billable;
 use Laravel\Cashier\Subscription;
 use App\Models\Plan;
+use Illuminate\Database\Eloquent\SoftDeletes;
 class User extends Authenticatable
 {
     use Notifiable,
       HasConfirmationTokens,
       Billable,
-      HasSubscriptions;
+      HasSubscriptions,
+      SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
