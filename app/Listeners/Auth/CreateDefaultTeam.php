@@ -15,6 +15,8 @@ class CreateDefaultTeam
      */
     public function handle($event)
     {
-        
+        $event->user->team()->create([
+          'name' => $event->user->name
+        ]);
     }
 }

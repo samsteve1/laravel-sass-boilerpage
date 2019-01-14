@@ -4,7 +4,7 @@ namespace App\Http\Middleware\Subscription;
 
 use Closure;
 
-class RedirectIfNotInactive
+class RedirectIfNoTeamPlan
 {
     /**
      * Handle an incoming request.
@@ -15,7 +15,7 @@ class RedirectIfNotInactive
      */
     public function handle($request, Closure $next)
     {
-      if(optional(auth()->user())->hasSubscription()) {
+      if(auth()->user()->doesNotHaveTeamSubscription()) {
         return redirect()->route('account.index');
       }
         return $next($request);

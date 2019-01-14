@@ -44,7 +44,15 @@ Route::group(['prefix' => 'account', 'middleware' => ['auth'], 'as' => 'account.
     Route::group(['middleware' => 'subscription.notcancelled'], function () {
       Route::get('/swap', 'SubscriptionSwapController@index')->name('subscription.swap.index');
     });
-
+    /**
+    *Team SubScription
+    **/
+    Route::group(['prefix' => 'team', 'middleware' => ['subscription.team']], function () {
+      Route::get('/', 'SubscriptionTeamController@index')->name('subscription.team.index');
+      Route::patch('/', 'SubscriptionTeamController@update')->name('subscription.team.update');
+      Route::post('/member', 'SubscriptionTeamMemberController@store')->name('subscription.team.member.store');
+      Route::delete('/member/{user}', 'SubscriptionTeamMemberController@destroy')->name('subscription.team.member.destroy');
+    });
 
   });
   /**
@@ -54,7 +62,9 @@ Route::group(['prefix' => 'account', 'middleware' => ['auth'], 'as' => 'account.
     Route::get('/', 'UpdateCardController@index')->name('updatecard.index');
     Route::post('/card', 'UpdateCardController@store')->name('updatecard.store');
   });
+
 });
+
 /**
 * Account activation
 */
@@ -63,6 +73,7 @@ Route::group(['prefix' => 'activation',  'as' => 'activation.', 'middleware' => 
   Route::post('/resend', 'Auth\ActivationResendController@store')->name('resend.store');
   Route::get('/{confirmation_token}', 'Auth\ActivationController@activate')->name('activate');
 });
+
 /**
 *Subscription Plans
 */
@@ -70,6 +81,7 @@ Route::group(['prefix' => 'plans', 'as' => 'plans.', 'middleware' => 'subscripti
   Route::get('/', 'Subscription\PlanController@index')->name('index');
   Route::get('/teams', 'Subscription\PlanTeamController@index')->name('teams.index');
 });
+
 /**
 *SubScription
 */

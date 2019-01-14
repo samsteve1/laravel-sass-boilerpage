@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Cashier\Billable;
+use Laravel\Cashier\Subscription;
+use App\Models\Plan;
 class User extends Authenticatable
 {
     use Notifiable,
@@ -46,4 +48,24 @@ class User extends Authenticatable
     {
       return $this->hasOne(Team::class);
     }
+    public function plan()
+    {
+      return $this->plans->first();
+    }
+    public function getPlanAttribute()
+    {
+      return $this->plan();
+    }
+    public function plans()
+    {
+      return $this->hasManyThrough(
+        Plan::class, Subscription::class, 'user_id', 'gateway_id', 'id', 'stripe_plan'
+        )->orderBy('subscriptions.created_at', 'desc');
+    }
+
+    public function teams()
+    {
+      return $this->belongsToMany(Team::class);
+    }
+
 }

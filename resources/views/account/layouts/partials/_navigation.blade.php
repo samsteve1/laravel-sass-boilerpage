@@ -16,5 +16,9 @@
     @endsubscriptionCancelled
 
       <a href="{{ route('account.updatecard.index') }}" class="list-group-item{{ return_if(on_page('account/card'), ' active') }}">Update card</a>
+
+      @teamsubscription
+        <a href="{{ route('account.subscription.team.index') }}" class="list-group-item{{ return_if(on_page('account/team'), ' active') }}">Manage team</a>
+      @endteamsubscription
   </div>
 @endsubscribed
