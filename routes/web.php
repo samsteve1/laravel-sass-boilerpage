@@ -70,6 +70,13 @@ Route::group(['prefix' => 'account', 'middleware' => ['auth'], 'as' => 'account.
     Route::get('/', 'UpdateCardController@index')->name('updatecard.index');
     Route::post('/card', 'UpdateCardController@store')->name('updatecard.store');
   });
+  /**
+  *TwoFactor Auth
+  */
+  Route::group([], function () {
+    Route::get('/twofactor', 'TwoFactorController@index')->name('twofactor.index');
+    Route::post('/twofactor', 'TwoFactorController@store')->name('twofactor.store');
+  });
 
 });
 

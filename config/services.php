@@ -40,4 +40,8 @@ return [
         ],
     ],
 
+    'authy' => [
+      'secret' => env('AUTHY_SECRET')
+    ],
+
 ];
