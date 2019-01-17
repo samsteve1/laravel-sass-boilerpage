@@ -63,6 +63,20 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
+                                <div class="checkbox">
+                                  <label>
+                                    <input type="checkbox" name="terms">
+                                    I accept the <a href="#" target="_blank">terms of service</a>
+                                  </label>
+                                </div>
+                                @if ($errors->has('terms'))                                    
+                                  {{ $errors->first('terms') }}
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
