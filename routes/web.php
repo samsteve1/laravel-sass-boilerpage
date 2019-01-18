@@ -128,3 +128,11 @@ Route::group(['prefix' => 'subscription', 'as' => 'subscription.', 'middleware' 
   Route::get('/', 'Subscription\SubscriptionController@index')->name('index');
   Route::post('/', 'Subscription\SubscriptionController@store')->name('store');
 });
+
+/**
+*Stripe webhook
+*/
+Route::post(
+    'stripe/webhook',
+    '\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook'
+);
