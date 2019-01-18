@@ -14,6 +14,7 @@ use Laravel\Cashier\Billable;
 use Laravel\Cashier\Subscription;
 use App\Models\Plan;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Passport\HasApiTokens;
 class User extends Authenticatable
 {
     use Notifiable,
@@ -22,7 +23,8 @@ class User extends Authenticatable
       HasSubscriptions,
       SoftDeletes,
       HasTwoFactorAuth,
-      HasRoles;
+      HasRoles,
+      HasApiTokens;
 
 
     /**

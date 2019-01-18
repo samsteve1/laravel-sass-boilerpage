@@ -5,6 +5,7 @@
   <a href="{{ route('dashboard') }}" class="list-group-item list-group-item-action{{ return_if(on_page('dashboard'), ' active') }}">Dashboard</a>
   <a href="{{ route('account.deactivate.index') }}" class="list-group-item list-group-item-action{{ return_if(on_page('account/deactivate'), ' active') }}">Deactivate account</a>
   <a href="{{ route('account.twofactor.index') }}" class="list-group-item list-group-item-action{{ return_if(on_page('account/twofactor'), ' active') }}">Two factor authentication</a>
+  <a href="{{ route('account.tokens.index') }}" class="list-group-item list-group-item-action{{ return_if(on_page('account/tokens'), ' active') }}">API tokens</a>
 </div>
 <hr>
 @subscribed
