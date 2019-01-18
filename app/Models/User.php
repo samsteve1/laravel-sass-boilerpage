@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Traits\HasConfirmationTokens;
 use App\Models\Traits\HasSubscriptions;
 use App\Models\Traits\HasTwoFactorAuth;
+use App\Models\Traits\HasRoles;
 use App\Models\Teams;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -20,7 +21,8 @@ class User extends Authenticatable
       Billable,
       HasSubscriptions,
       SoftDeletes,
-      HasTwoFactorAuth;
+      HasTwoFactorAuth,
+      HasRoles;
 
 
     /**
