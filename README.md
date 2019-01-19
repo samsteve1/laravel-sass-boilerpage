@@ -6,6 +6,6 @@
 5. User roles and permissions, and lots more.
 #p Clone the repository, cd into the directory and run the following commands:
 1. npm install
-2. bpm run dev
+2. npm run dev
 
 Cheers!
